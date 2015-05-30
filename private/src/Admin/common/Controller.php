@@ -3,8 +3,8 @@
 /**
  * Controller Manager
  *
- * @category  	src\Demo
- * @package   	src\Demo\common
+ * @category  	src\Admin
+ * @package   	src\Admin\common
  * @author    	Judicaël Paquet <judicael.paquet@gmail.com>
  * @copyright 	Copyright (c) 2013-2014 PAQUET Judicaël FR Inc. (https://github.com/las93)
  * @license   	http://www.iscreenway.com/framework/licence.php Tout droit rÃ©servÃ© Ã  http://www.iscreenway.com
@@ -14,15 +14,15 @@
  * @since     	1.0
  */
 
-namespace Venus\src\Demo\common;
+namespace Venus\src\Admin\common;
 
 use \Venus\core\Controller as CoreController;
 
 /**
  * Controller Manager
  *
- * @category  	src\Demo
- * @package   	src\Demo\common
+ * @category  	src\Admin
+ * @package   	src\Admin\common
  * @author    	Judicaël Paquet <judicael.paquet@gmail.com>
  * @copyright 	Copyright (c) 2013-2014 PAQUET Judicaël FR Inc. (https://github.com/las93)
  * @license   	http://www.iscreenway.com/framework/licence.php Tout droit rÃ©servÃ© Ã  http://www.iscreenway.com

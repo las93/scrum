@@ -3,8 +3,8 @@
 /**
  * Model Manager
  *
- * @category  	src\Demo
- * @package   	src\Demo\common
+ * @category  	src\Front
+ * @package   	src\Front\common
  * @author    	Judicaël Paquet <judicael.paquet@gmail.com>
  * @copyright 	Copyright (c) 2013-2014 PAQUET Judicaël FR Inc. (https://github.com/las93)
  * @license   	https://github.com/las93/venus2/blob/master/LICENSE.md Tout droit réservé à PAQUET Judicaël
@@ -14,15 +14,15 @@
  * @since     	1.0
  */
 
-namespace Venus\src\Demo\common;
+namespace Venus\src\Front\common;
 
 use \Venus\core\Model as CoreModel;
 
 /**
  * Model Manager
  *
- * @category  	src\Demo
- * @package   	src\Demo\common
+ * @category  	src\Front
+ * @package   	src\Front\common
  * @author    	Judicaël Paquet <judicael.paquet@gmail.com>
  * @copyright 	Copyright (c) 2013-2014 PAQUET Judicaël FR Inc. (https://github.com/las93)
  * @license   	https://github.com/las93/venus2/blob/master/LICENSE.md Tout droit réservé à PAQUET Judicaël

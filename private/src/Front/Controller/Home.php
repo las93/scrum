@@ -49,14 +49,9 @@ class Home extends Controller
      * @access public
      * @return void
      */
-    public function step1()
+    public function board()
     {
-        $this->view
-             ->assign('test', 1)
+        $this->layout
              ->display();
-        
-        echo "Hello World";
-        
-        exit();
     }
 }

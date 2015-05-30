@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 31 Mai 2015 à 00:36
+-- Généré le :  Dim 31 Mai 2015 à 01:58
 -- Version du serveur :  5.6.20
 -- Version de PHP :  5.5.15
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `scrum`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `project`
+--
+
+CREATE TABLE IF NOT EXISTS `project` (
+`id` int(10) unsigned NOT NULL,
+  `parent_id` int(10) unsigned NOT NULL,
+  `type` enum('theme','epic','user_story','task') NOT NULL DEFAULT 'user_story',
+  `name` varchar(200) NOT NULL,
+  `content` text NOT NULL,
+  `id_user_assign` int(10) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -137,9 +152,47 @@ INSERT INTO `statut_permission` (`id`, `id_statut`, `id_role`) VALUES
 (28, 21, 1),
 (29, 21, 3);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `team`
+--
+
+CREATE TABLE IF NOT EXISTS `team` (
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `team`
+--
+
+INSERT INTO `team` (`id`, `name`) VALUES
+(1, 'Team Front-Office'),
+(2, 'Team Back-Office');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+`id` int(10) unsigned NOT NULL,
+  `id_team` int(10) unsigned NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `firstname` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 --
 -- Index pour les tables exportées
 --
+
+--
+-- Index pour la table `project`
+--
+ALTER TABLE `project`
+ ADD PRIMARY KEY (`id`), ADD KEY `type` (`type`), ADD KEY `parent_id` (`parent_id`), ADD KEY `id_user_assign` (`id_user_assign`);
 
 --
 -- Index pour la table `role`
@@ -166,9 +219,26 @@ ALTER TABLE `statut_permission`
  ADD PRIMARY KEY (`id`), ADD KEY `id_statut` (`id_statut`), ADD KEY `id_role` (`id_role`);
 
 --
+-- Index pour la table `team`
+--
+ALTER TABLE `team`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_team` (`id_team`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
+--
+-- AUTO_INCREMENT pour la table `project`
+--
+ALTER TABLE `project`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
@@ -185,8 +255,24 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 ALTER TABLE `statut_permission`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
+-- AUTO_INCREMENT pour la table `team`
+--
+ALTER TABLE `team`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `project`
+--
+ALTER TABLE `project`
+ADD CONSTRAINT `id_user` FOREIGN KEY (`id_user_assign`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `statut`
@@ -206,6 +292,12 @@ ADD CONSTRAINT `statut_link_ibfk_1` FOREIGN KEY (`id_statut_source`) REFERENCES 
 ALTER TABLE `statut_permission`
 ADD CONSTRAINT `id_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `id_statut` FOREIGN KEY (`id_statut`) REFERENCES `statut` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+ADD CONSTRAINT `id_team` FOREIGN KEY (`id_team`) REFERENCES `team` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
