@@ -1,0 +1,25 @@
+body { font-family:arial;font-size:14px;margin:0px; }
+.draggable { width: 140px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+#draggable, #draggable2 { margin-bottom:20px; }
+#draggable { cursor: e-resize; }
+.epic { border-radius: 10px; background-color:#00AAFF;color:white;padding:4px;  }
+.statut { font-size:18px;float:left; width:140px;background-color:yellow;margin-right:20px;padding:5px;text-align:center;  }
+.line_statut {  clear:both;height:40px;padding:5px; }
+.line_userstory {  clear:both;height:100px;padding:5px; }
+.separator{background-color:pink;width:5px;height:800px;position:absolute;top:90px;}
+#main {  clear:both;width:100%; }
+#header {  clear:both;width:100%;background-color:#00AAFF;color:white;height:auto; }
+#statut {  clear:both;width:100%;background-color:#EEEEEE;color:black;height:40px;padding:10px; }
+#logo {  width:200px;float:left;height:30px; }
+#menu {  float:left;height:30px; }
+.one_menu {  padding:8px;float:left;margin:0px; }
+.one_menu:hover {  background-color:#44DDFF; }
+.one_menu a {  color:white; text-decoration:none; }
+div.clear{clear:both;}
+input:invalid { border: 1px solid red; }
+input:valid { border: 1px solid green; }
+input,textarea { border-radius: 10px; padding:5px;}
+input.submit,input[type=text],input[type=password]{width:400px;height:30px;}
+textarea{width:400px;height:100px;}
+input[type=button],input[type=submit]{border:solid 1px black;}
+#connection {  float:left;margin:10px;padding:10px;background-color:#EEEEEE;border:solid 1px #CCCCCC; }

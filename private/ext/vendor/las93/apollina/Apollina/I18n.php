@@ -11,12 +11,12 @@
  * @filesource  https://github.com/las93/venus2
  * @link        https://github.com/las93
  * @since       1.0
- *
-namespace Venus\lib;
+ */
+namespace Apollina;
 
-use \Venus\lib\I18n\Mock as Mock;
-use \Venus\lib\I18n\Gettext as Gettext;
-use \Venus\lib\I18n\Translator as Translator;
+use \Apollina\I18n\Mock as Mock;
+use \Apollina\I18n\Gettext as Gettext;
+use \Apollina\I18n\Translator as Translator;
 
 /**
  * This class manage the Translation
@@ -61,20 +61,20 @@ class I18n
      */
     public function _($sValue)
     {
-    	if (!function_exists("gettext")) {
+        if (file_exists(__DIR__.DIRECTORY_SEPARATOR.I18N_DIRECTORY.LANGUAGE.DIRECTORY_SEPARATOR.'LC_MESSAGES'.DIRECTORY_SEPARATOR.I18N_DOMAIN.'.json')) {
+        
+            if (!Translator::isConfigurated()) {
+                 
+                Translator::setConfig(__DIR__.DIRECTORY_SEPARATOR.I18N_DIRECTORY.LANGUAGE.DIRECTORY_SEPARATOR.'LC_MESSAGES'.DIRECTORY_SEPARATOR.I18N_DOMAIN.'.json');
+            }
+        
+            return Translator::_($sValue);
+        }
+    	else if (!function_exists("gettext")) {
     		
     		if (!Gettext::isConfigurated()) { Gettext::setConfig(LANGUAGE, I18N_DOMAIN, I18N_DIRECTORY); }	
     		
     		return Gettext::_($sValue);
-    	}
-    	if (file_exists(I18N_DIRECTORY.LANGUAGE.DIRECTORY_SEPARATOR.'LC_MESSAGES'.DIRECTORY_SEPARATOR.I18N_DOMAIN.'.txt')) {
-    		
-    		if (!Translator::isConfigurated()) { 
-    			
-    			Translator::setConfig(I18N_DIRECTORY.LANGUAGE.DIRECTORY_SEPARATOR.'LC_MESSAGES'.DIRECTORY_SEPARATOR.I18N_DOMAIN.'.json');
-    		}	
-    		
-    		return Translator::_($sValue);
     	}
     	else {
     		

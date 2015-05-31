@@ -45,4 +45,18 @@ abstract class Controller extends CoreController {
 
 		parent::__construct();
 	}
+	
+	/**
+	 * Constructor
+	 *
+	 * @access public
+	 * @return object
+	 */
+	protected function _checkSession()
+	{
+		if (!$this->session->get('id_user')) {
+		    
+		    $this->redirect($this->url->getUrl('home'));
+		}
+	}
 }

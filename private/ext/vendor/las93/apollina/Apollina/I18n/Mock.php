@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Manage translation with gettext
+ * Manage Cache by Mock -> just for simulate the cache object
  *
  * @category  	lib
  * @package		lib\Cache
@@ -13,10 +13,10 @@
  * @link      	https://github.com/las93
  * @since     	1.0
  */
-namespace Venus\lib\I18n;
+namespace Apollina\I18n;
 
 /**
- * Manage translation with gettext
+ * Manage Cache by Mock -> just for simulate the cache object
  *
  * @category  	lib
  * @package		lib\Cache
@@ -28,42 +28,8 @@ namespace Venus\lib\I18n;
  * @link      	https://github.com/las93
  * @since     	1.0
  */
-class Gettext
+class Mock
 {
-	/**
-	 * Indicate if the configuration is good or not
-	 * @var bool 
-	 */
-	private static $_bConfigurated = false;
-	
-	/**
-	 * set config jsut for the first time 
-	 * 
-	 * @access private
-	 * @return void
-	 */	
-	public static function setConfig($sLanguage, $sDomain, $sDirectory)
-	{	
-		putenv('LC_ALL='.$sLanguage);
-		setlocale(LC_ALL, $sLanguage);
-		
-		bindtextdomain($sDomain, $sDirectory);
-		textdomain($sDomain);
-		
-		$this->_bConfigurated = true;
-	}
-	
-	/**
-	 * set config jsut for the first time 
-	 * 
-	 * @access private
-	 * @return bool
-	 */
-	public static function isConfigurated()
-	{	
-		return $this->_bConfigurated;
-	}
-	
 	/**
 	 * get a value
 	 *
@@ -75,6 +41,6 @@ class Gettext
 	 */
 	public static function _($sValue)
 	{ 
-	    return _($sValue);
+	    return $sValue;
 	}
 }

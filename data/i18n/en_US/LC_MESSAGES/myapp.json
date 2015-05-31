@@ -1,3 +1,14 @@
-[
-    "test":"test"
-]
+{
+    "Boards":"Boards",
+    "Projects":"Projects",
+    "Name":"Name",
+    "EnterTheThemeName":"Enter the theme name",
+    "Description":"Description",
+    "EnterTheThemeDescription":"Enter the theme description",
+    "Add":"Add",
+    "Login":"Login",
+    "Password":"Password",
+    "EnterTheLogin":"Enter the login",
+    "EnterThePassword":"Enter the password",
+    "Validate":"Validate"
+}

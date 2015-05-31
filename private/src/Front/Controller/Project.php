@@ -16,7 +16,8 @@
 namespace Venus\src\Front\Controller;
 
 use \Venus\src\Front\common\Controller  as Controller;
-use \Venus\src\Front\Model\user         as User;
+use \Venus\src\Front\Entity\project     as EntityProject;
+use \Venus\src\Front\Model\project      as ModelProject;
 
 /**
  * Controller to test
@@ -31,7 +32,7 @@ use \Venus\src\Front\Model\user         as User;
  * @link        https://github.com/las93
  * @since       1.0
  */
-class Home extends Controller
+class Project extends Controller
 {
     /**
      * Constructor
@@ -43,7 +44,24 @@ class Home extends Controller
     {
         parent::__construct();
     }
-
+    
+    /**
+     * trigger before the method
+     * 
+     * @access public
+     * @return void
+     */
+    public function beforeExecuteRoute()
+    {
+        $this->_checkSession();
+        
+        $oProject = new ModelProject;
+        $aThemes = $oProject->findBytype('theme');
+        
+        $this->layout
+             ->assign('aProjects', $aThemes);
+    }
+    
     /**
      * the main page
      *
@@ -52,22 +70,36 @@ class Home extends Controller
      */
     public function show()
     {
+        
+        $this->layout
+             ->display();
+    }
+
+    /**
+     * the main page
+     *
+     * @access public
+     * @return void
+     */
+    public function add()
+    {
         if (isset($_POST) && count($_POST) > 0) {
-        
-            if (isset($_POST['login']) && strlen($_POST['login']) > 0 && isset($_POST['password']) 
-                && strlen($_POST['password']) > 0) {
-        
-                $oUser = new User;
-                $oGetUser = $oUser->findOneBy(['login' => $_POST['login'], 'password' => md5($_POST['password'])]);
+            
+            if (isset($_POST['name']) && strlen($_POST['name']) > 0) {
                 
-                if ($oGetUser->get_id() > 0) {
-                    
-                    $this->session->set('id_user', $oGetUser->get_id());
-                }
+                $oEntityProject = new EntityProject;
+                
+                $oEntityProject->set_name($_POST['name'])
+                               ->set_content($_POST['description'])
+                               ->set_parent_id(0)
+                               ->set_type('theme')
+                               ->set_id_user_assign(1)
+                               ->save();
             }
         }
         
         $this->layout
+			 ->assign('model', '/src/Front/View/ProjectAdd.tpl')
              ->display();
     }
 }

@@ -16,7 +16,8 @@
 namespace Venus\src\Front\Controller;
 
 use \Venus\src\Front\common\Controller  as Controller;
-use \Venus\src\Front\Model\user         as User;
+use \Venus\src\Front\Model\board        as ModelBoard;
+use \Venus\src\Front\Model\board_part   as BoardPart;
 
 /**
  * Controller to test
@@ -31,7 +32,7 @@ use \Venus\src\Front\Model\user         as User;
  * @link        https://github.com/las93
  * @since       1.0
  */
-class Home extends Controller
+class Board extends Controller
 {
     /**
      * Constructor
@@ -48,26 +49,20 @@ class Home extends Controller
      * the main page
      *
      * @access public
+     * @param  int $iIdBoard
      * @return void
      */
-    public function show()
+    public function show($iIdBoard = 2)
     {
-        if (isset($_POST) && count($_POST) > 0) {
+        $oBoardPart = new BoardPart;
+        $aBoardPart = $oBoardPart->findByid_board($iIdBoard);
         
-            if (isset($_POST['login']) && strlen($_POST['login']) > 0 && isset($_POST['password']) 
-                && strlen($_POST['password']) > 0) {
-        
-                $oUser = new User;
-                $oGetUser = $oUser->findOneBy(['login' => $_POST['login'], 'password' => md5($_POST['password'])]);
-                
-                if ($oGetUser->get_id() > 0) {
-                    
-                    $this->session->set('id_user', $oGetUser->get_id());
-                }
-            }
-        }
+        $oBoard = new ModelBoard;
+        $aBoard = $oBoard->findAll();
         
         $this->layout
+             ->assign('aBoardPart', $aBoardPart)
+             ->assign('aBoard', $aBoard)
              ->display();
     }
 }

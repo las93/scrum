@@ -1,3 +1,14 @@
-[
-    "test":"test"
-]
+{
+    "Boards":"Boards",
+    "Projects":"Projets",
+    "Name":"Nom",
+    "EnterTheThemeName":"Entrez le nom du thème",
+    "Description":"Description",
+    "EnterTheThemeDescription":"Entrez la description du thème",
+    "Add":"Ajouter",
+    "Login":"Pseudo",
+    "Password":"Mot de passe",
+    "EnterTheLogin":"Entrez votre pseudo",
+    "EnterThePassword":"Entrez votre mot de passe",
+    "Validate":"Valider"
+}
