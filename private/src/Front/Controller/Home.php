@@ -43,6 +43,17 @@ class Home extends Controller
     {
         parent::__construct();
     }
+    
+    /**
+     * trigger before the method
+     * 
+     * @access public
+     * @return void
+     */
+    public function beforeExecuteRoute()
+    {
+        $this->_checkSession();
+    }
 
     /**
      * the main page
@@ -51,22 +62,7 @@ class Home extends Controller
      * @return void
      */
     public function show()
-    {
-        if (isset($_POST) && count($_POST) > 0) {
-        
-            if (isset($_POST['login']) && strlen($_POST['login']) > 0 && isset($_POST['password']) 
-                && strlen($_POST['password']) > 0) {
-        
-                $oUser = new User;
-                $oGetUser = $oUser->findOneBy(['login' => $_POST['login'], 'password' => md5($_POST['password'])]);
-                
-                if ($oGetUser->get_id() > 0) {
-                    
-                    $this->session->set('id_user', $oGetUser->get_id());
-                }
-            }
-        }
-        
+    {        
         $this->layout
              ->display();
     }

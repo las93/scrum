@@ -10,5 +10,10 @@
     "Password":"Mot de passe",
     "EnterTheLogin":"Entrez votre pseudo",
     "EnterThePassword":"Entrez votre mot de passe",
-    "Validate":"Valider"
+    "Validate":"Valider",
+    "SignIn":"Connexion",
+    "RememberMe":"Se rappeler de moi",
+    "SignMeIn":"Me connecter",
+    "IForgetMyPassword":"J'ai oublié mon mot de passe",
+    "ChangeTheLanguage":"Changer la langue"
 }

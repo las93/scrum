@@ -2,7 +2,7 @@ $(function() {
 	
     $( "#draggable" ).draggable({ axis: "x" });
     
-    $( "#draggable" ).draggable("option", "grid", [ 170, 1 ]);
+    $( "#draggable" ).draggable("option", "grid", [ 150, 1 ]);
     
     $( "#draggable" ).on( "dragstop", function( event, ui ) {
     	

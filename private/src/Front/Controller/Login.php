@@ -16,8 +16,7 @@
 namespace Venus\src\Front\Controller;
 
 use \Venus\src\Front\common\Controller  as Controller;
-use \Venus\src\Front\Model\board        as ModelBoard;
-use \Venus\src\Front\Model\board_part   as BoardPart;
+use \Venus\src\Front\Model\user         as User;
 
 /**
  * Controller to test
@@ -32,7 +31,7 @@ use \Venus\src\Front\Model\board_part   as BoardPart;
  * @link        https://github.com/las93
  * @since       1.0
  */
-class Board extends Controller
+class Login extends Controller
 {
     /**
      * Constructor
@@ -44,36 +43,37 @@ class Board extends Controller
     {
         parent::__construct();
     }
-    
-    /**
-     * trigger before the method
-     * 
-     * @access public
-     * @return void
-     */
-    public function beforeExecuteRoute()
-    {
-        $this->_checkSession();
-    }
 
     /**
      * the main page
      *
      * @access public
-     * @param  int $iIdBoard
      * @return void
      */
-    public function show($iIdBoard = 2)
+    public function show()
     {
-        $oBoard = new ModelBoard;
-        $oThisBoard = $oBoard->findOneByid($iIdBoard);
+        if ($this->session->get('id_user')) {
         
-        $oBoardPart = new BoardPart;
-        $aBoardPart = $oBoardPart->findByid_board($iIdBoard);
+            $this->redirect($this->url->getUrl('home'));
+        }
         
-        $this->layout
-             ->assign('aBoardPart', $aBoardPart)
-             ->assign('oThisBoard', $oThisBoard)
+        if (isset($_POST) && count($_POST) > 0) {
+        
+            if (isset($_POST['login']) && strlen($_POST['login']) > 0 && isset($_POST['password']) 
+                && strlen($_POST['password']) > 0) {
+        
+                $oUser = new User;
+                $oGetUser = $oUser->findOneBy(['login' => $_POST['login'], 'password' => md5($_POST['password'])]);
+                
+                if ($oGetUser->get_id() > 0) {
+                    
+                    $this->session->set('id_user', $oGetUser->get_id());
+                    $this->redirect($this->url->getUrl('home'));
+                }
+            }
+        }
+        
+        $this->view
              ->display();
     }
 }

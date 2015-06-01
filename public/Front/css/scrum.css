@@ -1,12 +1,57 @@
-body { font-family:arial;font-size:14px;margin:0px; }
+
+/**********************************************************************************************************************************
+* RESET ALL CSS
+**********************************************************************************************************************************/
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
+{
+    border: 0;
+    font-family: inherit;	
+    font-style: inherit;
+    font-size: 100%;
+    font-weight: inherit;	
+    margin: 0;
+    outline: 0;
+    padding: 0;	
+    vertical-align: baseline;
+}
+
+/**********************************************************************************************************************************
+* HACK IE - 
+**********************************************************************************************************************************/
+
+header,nav,article,footer,address,section {display: block;}
+
+/**********************************************************************************************************************************
+* DIV CONTAINER
+**********************************************************************************************************************************/
+
+body {font-family:arial;font-size:14px;}
+
+/**********************************************************************************************************************************
+* BOARDS
+**********************************************************************************************************************************/
+
 .draggable { width: 140px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
 #draggable, #draggable2 { margin-bottom:20px; }
 #draggable { cursor: e-resize; }
+.separator{background-color:pink;width:5px;height:800px;position:absolute;top:105px;}
+.line_statut {  clear:both;height:40px;padding:5px;margin-left:8px; }
+.statut { font-size:18px;float:left; width:130px;background-color:yellow;margin-right:20px;padding:5px;text-align:center;height:55px;}
+
+/**********************************************************************************************************************************
+* TABLE
+**********************************************************************************************************************************/
+
+td{padding:5px;}
+
+/**********************************************************************************************************************************
+* TO MANAGE
+**********************************************************************************************************************************/
+
+
 .epic { border-radius: 10px; background-color:#00AAFF;color:white;padding:4px;  }
-.statut { font-size:18px;float:left; width:140px;background-color:yellow;margin-right:20px;padding:5px;text-align:center;  }
-.line_statut {  clear:both;height:40px;padding:5px; }
 .line_userstory {  clear:both;height:100px;padding:5px; }
-.separator{background-color:pink;width:5px;height:800px;position:absolute;top:90px;}
 #main {  clear:both;width:100%; }
 #header {  clear:both;width:100%;background-color:#00AAFF;color:white;height:auto; }
 #statut {  clear:both;width:100%;background-color:#EEEEEE;color:black;height:40px;padding:10px; }

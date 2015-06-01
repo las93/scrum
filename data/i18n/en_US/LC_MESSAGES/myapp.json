@@ -10,5 +10,10 @@
     "Password":"Password",
     "EnterTheLogin":"Enter the login",
     "EnterThePassword":"Enter the password",
-    "Validate":"Validate"
+    "Validate":"Validate",
+    "SignIn":"Sign In",
+    "RememberMe":"Remember me",
+    "SignMeIn":"Sign me in",
+    "IForgetMyPassword":"I forgot my password",
+    "ChangeTheLanguage":"Change the language"
 }
