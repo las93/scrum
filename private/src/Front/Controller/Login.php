@@ -52,11 +52,51 @@ class Login extends Controller
      */
     public function show()
     {
+        $this->_connection();
+        
         if ($this->session->get('id_user')) {
         
             $this->redirect($this->url->getUrl('home'));
         }
+           
+        $this->view
+             ->display();
+    }
+
+    /**
+     * the main page
+     *
+     * @access public
+     * @return void
+     */
+    public function lockscreen()
+    {        
+        $oUser = new User;
+        $oGetUser = $oUser->findOneByid($this->session->get('id_user'));
         
+        if (!$oGetUser) {
+            
+            $this->redirect($this->url->getUrl('home'));
+        }
+        
+        $this->session->set('lockscreen', 1);
+        
+        $this->_connection();
+        
+        $this->view
+             ->assign('login', $oGetUser->get_login())
+             ->assign('oUser', $oGetUser)
+             ->display('/src/Front/View/Lockscreen.tpl');
+    }
+
+    /**
+     * the main page
+     *
+     * @access public
+     * @return void
+     */
+    private function _connection()
+    {        
         if (isset($_POST) && count($_POST) > 0) {
         
             if (isset($_POST['login']) && strlen($_POST['login']) > 0 && isset($_POST['password']) 
@@ -68,12 +108,10 @@ class Login extends Controller
                 if ($oGetUser->get_id() > 0) {
                     
                     $this->session->set('id_user', $oGetUser->get_id());
+                    $this->session->set('lockscreen', 0);
                     $this->redirect($this->url->getUrl('home'));
                 }
             }
         }
-        
-        $this->view
-             ->display();
     }
 }

@@ -44,18 +44,6 @@ class team extends Entity
     private $id = null;
 	
 	/**
-	 * user Entity
-	 *
-	 * @access private
-	 * @var    user
-	 * @join
-	 *
-	 */
-    private $user = null;
-	
-	
-	
-	/**
 	 * name
 	 *
 	 * @access private
@@ -88,47 +76,6 @@ class team extends Entity
 		return $this;
 	}
 	
-	/**
-	 * get user entity join by id of team
-	 *
-	 * @access public
-	 * @param  array $aWhere
-	 * @join
-	 * @return array
-	 */
-	public function get_user($aWhere = array())
-	{
-		if ($this->user === null) {
-
-			$oOrm = new Orm;
-
-			$oOrm->select(array('*'))
-				 ->from('user');
-												   
-	        $aWhere['id_team'] = $this->get_id();
-											
-													  
-            $this->user = $oOrm->where($aWhere)
-						           ->load(false, '\Venus\src\Front\Entity');
-        }
-
-		return $this->user;
-	}
-	
-	/**
-	 * set user entity join by id of team
-	 *
-	 * @access public
-	 * @param  \Venus\src\Front\Entity\user  $user user entity
-	 * @join
-	 * @return array
-	 */
-	public function set_user(array $user)
-	{
-		$this->user = $user;
-		return $this;
-	}
-
 	/**
 	 * get name of team
 	 *

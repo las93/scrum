@@ -85,5 +85,10 @@ abstract class Controller extends CoreController
 		    
 		    $this->redirect($this->url->getUrl('login'));
 		}
+
+		if ($this->session->get('lockscreen') == 1) {
+		    
+		    $this->redirect($this->url->getUrl('lockscreen'));
+		}
 	}
 }

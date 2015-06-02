@@ -1276,6 +1276,9 @@ body > .header .logo .icon {
 .box.box-success {
   border-top-color: #00a65a;
 }
+.box.box-orange {
+  border-top-color: orange;
+}
 .box.height-control .box-body {
   max-height: 300px;
   overflow: auto;
@@ -1461,6 +1464,14 @@ body > .header .logo .icon {
   background-color: #00a65a;
 }
 .box.box-solid.box-success > .box-header a {
+  color: #444;
+}
+.box.box-solid.box-orange > .box-header {
+  color: #fff;
+  background: orange;
+  background-color: orange;
+}
+.box.box-solid.box-orange > .box-header a {
   color: #444;
 }
 .box.box-solid > .box-header > .box-tools > .btn {

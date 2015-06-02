@@ -46,6 +46,17 @@ body {font-family:arial;font-size:14px;}
 td{padding:5px;}
 
 /**********************************************************************************************************************************
+* FORM
+**********************************************************************************************************************************/
+
+input:invalid { border: 1px solid red; }
+input:valid { border: 1px solid green; }
+input,textarea,select { border-radius: 10px; padding:5px;}
+input.submit,input[type=text],input[type=password],select{width:400px;height:30px;}
+textarea{width:400px;height:100px;}
+input[type=button],input[type=submit]{border:solid 1px black;}
+
+/**********************************************************************************************************************************
 * TO MANAGE
 **********************************************************************************************************************************/
 
@@ -61,10 +72,5 @@ td{padding:5px;}
 .one_menu:hover {  background-color:#44DDFF; }
 .one_menu a {  color:white; text-decoration:none; }
 div.clear{clear:both;}
-input:invalid { border: 1px solid red; }
-input:valid { border: 1px solid green; }
-input,textarea { border-radius: 10px; padding:5px;}
-input.submit,input[type=text],input[type=password]{width:400px;height:30px;}
-textarea{width:400px;height:100px;}
-input[type=button],input[type=submit]{border:solid 1px black;}
+
 #connection {  float:left;margin:10px;padding:10px;background-color:#EEEEEE;border:solid 1px #CCCCCC; }

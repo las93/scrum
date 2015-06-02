@@ -10,4 +10,9 @@ $(function() {
         if (parseInt(this.style.left) < 0) { this.style.left = '0px'; }
         else if (parseInt(this.style.left) > max_width + 1) { this.style.left = max_width+'px'; }
     });
+    
+    setTimeout(function()
+    {
+    	window.location.href = '/lockscreen/';
+    }, 600000);
 });

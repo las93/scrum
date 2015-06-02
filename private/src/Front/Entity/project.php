@@ -101,6 +101,24 @@ class project extends Entity
 	
 	
 	/**
+	 * color
+	 *
+	 * @access private
+	 * @var    string
+	 *
+	 */
+    private $color = null;
+	
+	/**
+	 * icon
+	 *
+	 * @access private
+	 * @var    string
+	 *
+	 */
+    private $icon = null;
+	
+	/**
 	 * get id of project
 	 *
 	 * @access public
@@ -287,4 +305,52 @@ class project extends Entity
 		$this->user = $user;
 		return $this;
 	}
-}
+
+	/**
+	 * get color of project
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function get_color()
+	{
+		return $this->color;
+	}
+
+	/**
+	 * set color of project
+	 *
+	 * @access public
+	 * @param  string $color color of project
+	 * @return \Venus\src\Front\Entity\project
+	 */
+	public function set_color($color) 
+	{
+		$this->color = $color;
+		return $this;
+	}
+	
+	/**
+	 * get icon of project
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function get_icon()
+	{
+		return $this->icon;
+	}
+
+	/**
+	 * set icon of project
+	 *
+	 * @access public
+	 * @param  string $icon icon of project
+	 * @return \Venus\src\Front\Entity\project
+	 */
+	public function set_icon($icon) 
+	{
+		$this->icon = $icon;
+		return $this;
+	}
+	}

@@ -22,7 +22,7 @@
 
         <div class="form-box" id="login-box">
             <div class="header">{gettext word='SignIn'}</div>
-            <form action="{url alias='home'}" method="post">
+            <form method="post">
                 <div class="body bg-gray">
                     <div class="form-group">
                         <input type="text" name="login" class="form-control" placeholder="{gettext word='EnterTheLogin'}"/>
