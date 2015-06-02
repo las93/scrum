@@ -15,5 +15,6 @@
     "RememberMe":"Se rappeler de moi",
     "SignMeIn":"Me connecter",
     "IForgetMyPassword":"J'ai oublié mon mot de passe",
-    "ChangeTheLanguage":"Changer la langue"
+    "ChangeTheLanguage":"Changer la langue",
+    "Hello":"Salut"
 }

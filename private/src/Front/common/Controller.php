@@ -18,6 +18,7 @@ namespace Venus\src\Front\common;
 
 use \Venus\core\Controller          as CoreController;
 use \Venus\src\Front\Model\board    as Board;
+use \Venus\src\Front\Model\user     as User;
 
 /**
  * Controller Manager
@@ -33,15 +34,14 @@ use \Venus\src\Front\Model\board    as Board;
  * @since     	1.0
  */
 
-abstract class Controller extends CoreController {
-
+abstract class Controller extends CoreController 
+{
 	/**
 	 * Constructor
 	 *
 	 * @access public
 	 * @return object
 	 */
-
 	public function __construct() {
 
 		parent::__construct();
@@ -51,6 +51,23 @@ abstract class Controller extends CoreController {
             $oBoard = new Board;
             return $oBoard->findAll();
 		};
+
+		if ($this->session->get('id_user')) {
+
+    		$this->modelUser = function()
+    		{
+                $oUser = new User;
+                return $oUser->findOneByid($this->session->get('id_user'));
+    		};
+
+    		$this->layout
+    		     ->assign('aUser', $this->modelUser);
+		}
+		else {
+		    
+		    $this->layout
+		         ->assign('aUser', null);
+		}
 		
 		$this->layout
 		     ->assign('aBoard', $this->modelBoard);

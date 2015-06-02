@@ -15,5 +15,6 @@
     "RememberMe":"Remember me",
     "SignMeIn":"Sign me in",
     "IForgetMyPassword":"I forgot my password",
-    "ChangeTheLanguage":"Change the language"
+    "ChangeTheLanguage":"Change the language",
+    "Hello":"Hello"
 }
