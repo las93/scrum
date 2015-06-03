@@ -10,7 +10,7 @@
                                 <div class="box {$oEpic->get_color()}">
                                     <div class="box-header">
                                         <i class="fa fa-bullhorn"></i>
-                                        <h3 class="box-title">{$oEpic->get_name()}</h3>
+                                        <h3 class="box-title"><a href="{url alias='epic' id=$oEpic->get_id()}">{$oEpic->get_name()}</a></h3>
                                     </div><!-- /.box-header -->
                                     <div class="box-body">
                                         <div class="callout callout-info">

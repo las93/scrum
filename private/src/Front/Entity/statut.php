@@ -74,6 +74,15 @@ class statut extends Entity
 	
 	
 	/**
+	 * color
+	 *
+	 * @access private
+	 * @var    string
+	 *
+	 */
+    private $color = null;
+	
+	/**
 	 * get id of statut
 	 *
 	 * @access public
@@ -166,7 +175,7 @@ class statut extends Entity
 											
 													  
             $aResult = $oOrm->where($aWhere)
-						           ->load(false, '\Venus\src\Front\Entity');
+						           ->load(false, '\Venus\src\Front\Entity\\');
 
           if (count($aResult) > 0) { $this->role = $aResult[0]; }
           else { $this->role = array(); }
@@ -188,4 +197,28 @@ class statut extends Entity
 		$this->role = $role;
 		return $this;
 	}
-}
+
+	/**
+	 * get color of statut
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function get_color()
+	{
+		return $this->color;
+	}
+
+	/**
+	 * set color of statut
+	 *
+	 * @access public
+	 * @param  string $color color of statut
+	 * @return \Venus\src\Front\Entity\statut
+	 */
+	public function set_color($color) 
+	{
+		$this->color = $color;
+		return $this;
+	}
+	}

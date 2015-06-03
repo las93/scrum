@@ -315,6 +315,19 @@
                                 <i class="fa fa-th"></i> <span>{gettext word='Themes'}</span> <small class="badge pull-right bg-green">new</small>
                             </a>
                         </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o"></i>
+                                <span>Sprint</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                            {foreach from=$aSprints key=$iKey item=$oSprint}
+                                <li><a href="{url alias='sprint' id=$oSprint->get_id()}"><i class="fa fa-angle-double-right"></i> Sprint {$oSprint->get_number()}</a></li>
+                            {/foreach}
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Impeded Sprint</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->

@@ -187,7 +187,7 @@ class board extends Entity
 											
 													  
             $aResult = $oOrm->where($aWhere)
-						           ->load(false, '\Venus\src\Front\Entity');
+						           ->load(false, '\Venus\src\Front\Entity\\');
 
           if (count($aResult) > 0) { $this->role = $aResult[0]; }
           else { $this->role = array(); }
@@ -255,7 +255,7 @@ class board extends Entity
 											
 													  
             $aResult = $oOrm->where($aWhere)
-						           ->load(false, '\Venus\src\Front\Entity');
+						           ->load(false, '\Venus\src\Front\Entity\\');
 
           if (count($aResult) > 0) { $this->user = $aResult[0]; }
           else { $this->user = array(); }

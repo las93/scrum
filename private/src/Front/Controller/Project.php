@@ -83,7 +83,7 @@ class Project extends Controller
         
         $this->layout
              ->assign('aCountEpics', $aEpics)
-             ->assign('sTitle', 'Themes')
+             ->assign('sTitle', $this->translator->_('Themes'))
              ->assign('iPage', 1)
              ->display();
     }
@@ -133,10 +133,13 @@ class Project extends Controller
         $oProject = new ModelProject;
         $aEpics = $oProject->findBy(['type' => 'epic', 'parent_id' => $id]);
         
+        $oProject = new ModelProject;
+        $oTheme = $oProject->findOneByid($id);
+        
         $this->layout
 			 ->assign('model', '/src/Front/View/Theme.tpl')
              ->assign('aEpics', $aEpics)
-             ->assign('sTitle', 'Epics')
+             ->assign('sTitle', $oTheme->get_name().' | '.$this->translator->_('Epics'))
              ->assign('sThirdTitle', $this->translator->_('Epics'))
              ->assign('iPage', 3)
              ->display();
@@ -174,6 +177,30 @@ class Project extends Controller
              ->assign('sFourTitle', $this->translator->_('AddEpic'))
              ->assign('iPage', 2)
              ->assign('iId', $id)
+             ->display();
+    }
+    
+    /**
+     * the main page of theme
+     *
+     * @access public
+     * @param  int $id
+     * @return void
+     */
+    public function showEpic($id)
+    {
+        $oProject = new ModelProject;
+        $aUserStories = $oProject->findBy(['type' => 'user_story', 'parent_id' => $id]);
+        
+        $oProject = new ModelProject;
+        $oEpic = $oProject->findOneByid($id);
+        
+        $this->layout
+			 ->assign('model', '/src/Front/View/Epic.tpl')
+             ->assign('aUserStories', $aUserStories)
+             ->assign('sTitle', $oEpic->get_name().' | '.$this->translator->_('UserStories'))
+             ->assign('sThirdTitle', $this->translator->_('UserStories'))
+             ->assign('iPage', 3)
              ->display();
     }
 }

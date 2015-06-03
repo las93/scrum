@@ -173,7 +173,7 @@ class board_part extends Entity
 											
 													  
             $aResult = $oOrm->where($aWhere)
-						           ->load(false, '\Venus\src\Front\Entity');
+						           ->load(false, '\Venus\src\Front\Entity\\');
 
           if (count($aResult) > 0) { $this->board = $aResult[0]; }
           else { $this->board = array(); }
@@ -265,7 +265,7 @@ class board_part extends Entity
 											
 													  
             $aResult = $oOrm->where($aWhere)
-						           ->load(false, '\Venus\src\Front\Entity');
+						           ->load(false, '\Venus\src\Front\Entity\\');
 
           if (count($aResult) > 0) { $this->statut = $aResult[0]; }
           else { $this->statut = array(); }

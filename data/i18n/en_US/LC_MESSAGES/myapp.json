@@ -45,5 +45,13 @@
     "AddEpic":"Add epic",
     "AddNewEpic":"Add new epic",
     "OrSignInAsDifferentUser":"Or sign in as a different user",
-    "AllEpicsForThisTheme":"All epics for this theme"
+    "AllEpicsForThisTheme":"All epics for this theme",
+    "UserStories":"User stories",
+    "AllUserStoriesForThisEpic":"All user stories for this epic",
+    "Id":"Id",
+    "User":"User",
+    "Date":"Date",
+    "Status":"Status",
+    "Search":"Search",
+    "UserStory":"User story"
 }

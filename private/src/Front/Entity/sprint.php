@@ -1,7 +1,7 @@
 <?php
 	
 /**
- * Entity to user
+ * Entity to sprint
  *
  * @category  	\Venus
  * @package   	\Venus\src\Front\Entity
@@ -19,7 +19,7 @@ use \Attila\core\Entity as Entity;
 use \Attila\Orm as Orm;
 
 /**
- * Entity to user
+ * Entity to sprint
  *
  * @category  	\Venus
  * @package   	\Venus\src\Front\Entity
@@ -31,7 +31,7 @@ use \Attila\Orm as Orm;
  * @link      	https://github.com/las93
  * @since     	1.0
  */
-class user extends Entity 
+class sprint extends Entity 
 {
 	/**
 	 * id
@@ -42,6 +42,15 @@ class user extends Entity
 	 * @primary_key
 	 */
     private $id = null;
+	
+	/**
+	 * number
+	 *
+	 * @access private
+	 * @var    int
+	 *
+	 */
+    private $number = null;
 	
 	/**
 	 * id_team
@@ -65,43 +74,7 @@ class user extends Entity
 	
 	
 	/**
-	 * lastname
-	 *
-	 * @access private
-	 * @var    string
-	 *
-	 */
-    private $lastname = null;
-	
-	/**
-	 * firstname
-	 *
-	 * @access private
-	 * @var    string
-	 *
-	 */
-    private $firstname = null;
-	
-	/**
-	 * login
-	 *
-	 * @access private
-	 * @var    string
-	 *
-	 */
-    private $login = null;
-	
-	/**
-	 * password
-	 *
-	 * @access private
-	 * @var    string
-	 *
-	 */
-    private $password = null;
-	
-	/**
-	 * get id of user
+	 * get id of sprint
 	 *
 	 * @access public
 	 * @return int
@@ -112,11 +85,11 @@ class user extends Entity
 	}
 
 	/**
-	 * set id of user
+	 * set id of sprint
 	 *
 	 * @access public
-	 * @param  int $id id of user
-	 * @return \Venus\src\Front\Entity\user
+	 * @param  int $id id of sprint
+	 * @return \Venus\src\Front\Entity\sprint
 	 */
 	public function set_id($id) 
 	{
@@ -125,7 +98,31 @@ class user extends Entity
 	}
 	
 	/**
-	 * get id_team of user
+	 * get number of sprint
+	 *
+	 * @access public
+	 * @return int
+	 */
+	public function get_number()
+	{
+		return $this->number;
+	}
+
+	/**
+	 * set number of sprint
+	 *
+	 * @access public
+	 * @param  int $number number of sprint
+	 * @return \Venus\src\Front\Entity\sprint
+	 */
+	public function set_number($number) 
+	{
+		$this->number = $number;
+		return $this;
+	}
+	
+	/**
+	 * get id_team of sprint
 	 *
 	 * @access public
 	 * @return int
@@ -136,11 +133,11 @@ class user extends Entity
 	}
 
 	/**
-	 * set id_team of user
+	 * set id_team of sprint
 	 *
 	 * @access public
-	 * @param  int $id_team id_team of user
-	 * @return \Venus\src\Front\Entity\user
+	 * @param  int $id_team id_team of sprint
+	 * @return \Venus\src\Front\Entity\sprint
 	 */
 	public function set_id_team($id_team) 
 	{
@@ -149,12 +146,12 @@ class user extends Entity
 	}
 	
 	/**
-	 * get team entity join by id_team of user
+	 * get team entity join by id_team of sprint
 	 *
 	 * @access public
 	 * @param  array $aWhere
 	 * @join
-	 * @return \Venus\src\Front\Entity\user
+	 * @return \Venus\src\Front\Entity\sprint
 	 */
 	public function get_team($aWhere = array())
 	{
@@ -179,112 +176,16 @@ class user extends Entity
 	}
 	
 	/**
-	 * set team entity join by id_team of user
+	 * set team entity join by id_team of sprint
 	 *
 	 * @access public
 	 * @param  \Venus\src\Front\Entity\team  $team team entity
 	 * @join
-	 * @return \Venus\src\Front\Entity\user
+	 * @return \Venus\src\Front\Entity\sprint
 	 */
 	public function set_team(\Venus\src\Front\Entity\team $team)
 	{
 		$this->team = $team;
 		return $this;
 	}
-
-	/**
-	 * get lastname of user
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function get_lastname()
-	{
-		return $this->lastname;
-	}
-
-	/**
-	 * set lastname of user
-	 *
-	 * @access public
-	 * @param  string $lastname lastname of user
-	 * @return \Venus\src\Front\Entity\user
-	 */
-	public function set_lastname($lastname) 
-	{
-		$this->lastname = $lastname;
-		return $this;
-	}
-	
-	/**
-	 * get firstname of user
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function get_firstname()
-	{
-		return $this->firstname;
-	}
-
-	/**
-	 * set firstname of user
-	 *
-	 * @access public
-	 * @param  string $firstname firstname of user
-	 * @return \Venus\src\Front\Entity\user
-	 */
-	public function set_firstname($firstname) 
-	{
-		$this->firstname = $firstname;
-		return $this;
-	}
-	
-	/**
-	 * get login of user
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function get_login()
-	{
-		return $this->login;
-	}
-
-	/**
-	 * set login of user
-	 *
-	 * @access public
-	 * @param  string $login login of user
-	 * @return \Venus\src\Front\Entity\user
-	 */
-	public function set_login($login) 
-	{
-		$this->login = $login;
-		return $this;
-	}
-	
-	/**
-	 * get password of user
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function get_password()
-	{
-		return $this->password;
-	}
-
-	/**
-	 * set password of user
-	 *
-	 * @access public
-	 * @param  string $password password of user
-	 * @return \Venus\src\Front\Entity\user
-	 */
-	public function set_password($password) 
-	{
-		$this->password = $password;
-		return $this;
-	}
-	}
+}

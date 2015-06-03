@@ -16,8 +16,11 @@
 
 namespace Venus\src\Front\common;
 
+use \Attila\Orm                     as Orm;
+use \Attila\Orm\Where               as Where;
 use \Venus\core\Controller          as CoreController;
 use \Venus\src\Front\Model\board    as Board;
+use \Venus\src\Front\Model\sprint   as Sprint;
 use \Venus\src\Front\Model\user     as User;
 
 /**
@@ -48,20 +51,31 @@ abstract class Controller extends CoreController
 
 		$this->modelBoard = function()
 		{
-            $oBoard = new Board;
-            return $oBoard->findAll();
+            return new Board;
 		};
 
 		if ($this->session->get('id_user')) {
 
-    		$this->modelUser = function()
-    		{
-                $oUser = new User;
-                return $oUser->findOneByid($this->session->get('id_user'));
-    		};
+            $oUser = new User;
+            $oOneUser = $oUser->findOneByid($this->session->get('id_user'));
+
+            $oTeam = $oOneUser->get_team();
+            
+            $oOrm = new Orm;
+            $oWhere = new Where;
+            
+            $oWhere->whereInf('start', "'".date('Y-m-d')."'")
+                   ->orWhereSup('end', "'".date('Y-m-d')."'");
+            
+            $aSprints = $oOrm->select(array('*'))
+                             ->from('sprint')
+                             ->where($oWhere)
+                             ->load();
 
     		$this->layout
-    		     ->assign('aUser', $this->modelUser);
+    		     ->assign('aUser', $oOneUser)
+    		     ->assign('aSprints', $aSprints);
+    		;
 		}
 		else {
 		    
@@ -69,8 +83,11 @@ abstract class Controller extends CoreController
 		         ->assign('aUser', null);
 		}
 		
+		$aBoards = $this->modelBoard
+		                ->findAll();
+		
 		$this->layout
-		     ->assign('aBoard', $this->modelBoard);
+		     ->assign('aBoard', $aBoards);
 	}
 	
 	/**

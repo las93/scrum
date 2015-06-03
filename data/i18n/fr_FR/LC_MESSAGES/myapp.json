@@ -45,5 +45,13 @@
     "AddEpic":"Ajouter une épopée",
     "AddNewEpic":"Ajouter une nouvelle épopée",
     "OrSignInAsDifferentUser":"Ou se connecter avec un autre utilisateur",
-    "AllEpicsForThisTheme":"Toutes les épopées de ce thème"
+    "UserStories":"User stories",
+    "AllUserStoriesForThisEpic":"Toutes les user stories de cette épopée",
+    "AllEpicsForThisTheme":"Toutes les épopées de ce thème",
+    "Id":"Id",
+    "User":"Utilisateur",
+    "Date":"Date",
+    "Status":"Statut",
+    "Search":"Rechercher",
+    "UserStory":"User story"
 }
