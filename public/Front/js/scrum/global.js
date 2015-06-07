@@ -13,6 +13,6 @@ $(function() {
     
     setTimeout(function()
     {
-    	window.location.href = '/lockscreen/';
+    	window.location.href = '/lockscreen/?back='+encodeURIComponent(window.location);
     }, 600000);
 });

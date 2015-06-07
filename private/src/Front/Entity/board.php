@@ -95,6 +95,27 @@ class board extends Entity
 	
 	
 	/**
+	 * id_team
+	 *
+	 * @access private
+	 * @var    int
+	 *
+	 */
+    private $id_team = null;
+	
+	/**
+	 * team Entity
+	 *
+	 * @access private
+	 * @var    team
+	 * @join
+	 *
+	 */
+    private $team = null;
+	
+	
+	
+	/**
 	 * get id of board
 	 *
 	 * @access public
@@ -275,6 +296,74 @@ class board extends Entity
 	public function set_user(\Venus\src\Front\Entity\user $user)
 	{
 		$this->user = $user;
+		return $this;
+	}
+
+	/**
+	 * get id_team of board
+	 *
+	 * @access public
+	 * @return int
+	 */
+	public function get_id_team()
+	{
+		return $this->id_team;
+	}
+
+	/**
+	 * set id_team of board
+	 *
+	 * @access public
+	 * @param  int $id_team id_team of board
+	 * @return \Venus\src\Front\Entity\board
+	 */
+	public function set_id_team($id_team) 
+	{
+		$this->id_team = $id_team;
+		return $this;
+	}
+	
+	/**
+	 * get team entity join by id_team of board
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return \Venus\src\Front\Entity\board
+	 */
+	public function get_team($aWhere = array())
+	{
+		if ($this->team === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('team');
+												   
+	        $aWhere['id'] = $this->get_id_team();
+											
+													  
+            $aResult = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+
+          if (count($aResult) > 0) { $this->team = $aResult[0]; }
+          else { $this->team = array(); }
+        }
+
+		return $this->team;
+	}
+	
+	/**
+	 * set team entity join by id_team of board
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\team  $team team entity
+	 * @join
+	 * @return \Venus\src\Front\Entity\board
+	 */
+	public function set_team(\Venus\src\Front\Entity\team $team)
+	{
+		$this->team = $team;
 		return $this;
 	}
 }

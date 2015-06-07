@@ -64,14 +64,21 @@ abstract class Controller extends CoreController
             $oOrm = new Orm;
             $oWhere = new Where;
             
-            $oWhere->whereInf('start', "'".date('Y-m-d')."'")
-                   ->orWhereSup('end', "'".date('Y-m-d')."'");
-            
+            $oWhere->whereInf('start', date('Y-m-d'))
+                   ->andWhereSup('end', date('Y-m-d'))
+                   ->andWhereEqual('id_team', $oTeam->get_id());
+           
             $aSprints = $oOrm->select(array('*'))
                              ->from('sprint')
                              ->where($oWhere)
                              ->load();
-
+            
+            foreach ($aSprints as $iKey => $oSprint) {
+            
+                $aSprints[$iKey]->boards = $this->modelBoard
+                                                ->findByid_team($oTeam->get_id());
+            }
+            
     		$this->layout
     		     ->assign('aUser', $oOneUser)
     		     ->assign('aSprints', $aSprints);
@@ -82,12 +89,6 @@ abstract class Controller extends CoreController
 		    $this->layout
 		         ->assign('aUser', null);
 		}
-		
-		$aBoards = $this->modelBoard
-		                ->findAll();
-		
-		$this->layout
-		     ->assign('aBoard', $aBoards);
 	}
 	
 	/**

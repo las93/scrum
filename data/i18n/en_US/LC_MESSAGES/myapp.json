@@ -53,5 +53,17 @@
     "Date":"Date",
     "Status":"Status",
     "Search":"Search",
-    "UserStory":"User story"
+    "UserStory":"User story",
+    "Task":"Task",
+    "Configuration":"Configuration",
+    "ManageGroups":"Manage groups",
+    "Group":"Group",
+    "Groups":"Groups",
+    "Users":"Users",
+    "Type":"Type",
+    "Options":"Options",
+    "AddGroup":"Add group",
+    "EnterTheGroupName":"Enter the group name",
+    "Human":"Human",
+    "Engine":"Engine"
 }

@@ -51,10 +51,6 @@ td{padding:5px;}
 
 input:invalid { border: 1px solid red; }
 input:valid { border: 1px solid green; }
-input,textarea,select { border-radius: 10px; padding:5px;}
-input.submit,input[type=text],input[type=password],select{width:400px;height:30px;}
-textarea{width:400px;height:100px;}
-input[type=button],input[type=submit]{border:solid 1px black;}
 
 /**********************************************************************************************************************************
 * TO MANAGE

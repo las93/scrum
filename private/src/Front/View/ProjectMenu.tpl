@@ -7,8 +7,8 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="{url alias='home'}"><i class="fa fa-dashboard"></i> {gettext word='Home'}</a></li>
-                        <li{if !$sThirdTitle} class="active"{/if}>{if $sThirdTitle}<a href="{url alias='project'}">{/if}{gettext word='Themes'}{if $sThirdTitle}</a>{/if}</li>
-                        {if $sThirdTitle}<li{if !$sFourTitle} class="active"{/if}>{if $sFourTitle}<a href="{url alias='theme' id=$app.get.id}">{/if}{$sThirdTitle}{if $sFourTitle}</a>{/if}</li>{/if}
+                        <li{if !$sThirdTitle} class="active"{/if}>{if $sThirdTitle}<a href="{$sSecondUrl}">{/if}{$sSecondTitle}{if $sThirdTitle}</a>{/if}</li>
+                        {if $sThirdTitle}<li{if !$sFourTitle} class="active"{/if}>{if $sFourTitle}<a href="{$sThirdUrl}">{/if}{$sThirdTitle}{if $sFourTitle}</a>{/if}</li>{/if}
                         {if $sFourTitle}<li class="active">{$sFourTitle}</li>{/if}
                     </ol>
                 </section>

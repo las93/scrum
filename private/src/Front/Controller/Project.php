@@ -84,6 +84,7 @@ class Project extends Controller
         $this->layout
              ->assign('aCountEpics', $aEpics)
              ->assign('sTitle', $this->translator->_('Themes'))
+             ->assign('sSecondTitle', $this->translator->_('Themes'))
              ->assign('iPage', 1)
              ->display();
     }
@@ -116,6 +117,8 @@ class Project extends Controller
         $this->layout
 			 ->assign('model', '/src/Front/View/ProjectAdd.tpl')
              ->assign('sTitle', $this->translator->_('AddNewTheme'))
+             ->assign('sSecondTitle', $this->translator->_('Themes'))
+             ->assign('sSecondUrl', $this->url->getUrl('project'))
              ->assign('sThirdTitle', $this->translator->_('AddTheme'))
              ->assign('iPage', 2)
              ->display();
@@ -140,6 +143,8 @@ class Project extends Controller
 			 ->assign('model', '/src/Front/View/Theme.tpl')
              ->assign('aEpics', $aEpics)
              ->assign('sTitle', $oTheme->get_name().' | '.$this->translator->_('Epics'))
+             ->assign('sSecondTitle', $this->translator->_('Themes'))
+             ->assign('sSecondUrl', $this->url->getUrl('project'))
              ->assign('sThirdTitle', $this->translator->_('Epics'))
              ->assign('iPage', 3)
              ->display();
@@ -173,7 +178,10 @@ class Project extends Controller
         $this->layout
 			 ->assign('model', '/src/Front/View/ThemeAdd.tpl')
              ->assign('sTitle', $this->translator->_('AddNewEpic'))
+             ->assign('sSecondTitle', $this->translator->_('Themes'))
+             ->assign('sSecondUrl', $this->url->getUrl('project'))
              ->assign('sThirdTitle', $this->translator->_('Epics'))
+             ->assign('sThirdUrl', $this->url->getUrl('theme', ['id' => $id]))
              ->assign('sFourTitle', $this->translator->_('AddEpic'))
              ->assign('iPage', 2)
              ->assign('iId', $id)
@@ -192,14 +200,28 @@ class Project extends Controller
         $oProject = new ModelProject;
         $aUserStories = $oProject->findBy(['type' => 'user_story', 'parent_id' => $id]);
         
+        foreach ($aUserStories as $iKey => $oUserStory) {
+
+            $oTask = new ModelProject;
+            $aTasks = $oTask->findBy(['type' => 'task', 'parent_id' => $oUserStory->get_id()]);
+            $aUserStories[$iKey]->count = count($aTasks);
+        }
+        
         $oProject = new ModelProject;
         $oEpic = $oProject->findOneByid($id);
+
+        $oProject = new ModelProject;
+        $iIdTheme = $oEpic->get_project()->get_id();
         
         $this->layout
 			 ->assign('model', '/src/Front/View/Epic.tpl')
              ->assign('aUserStories', $aUserStories)
              ->assign('sTitle', $oEpic->get_name().' | '.$this->translator->_('UserStories'))
-             ->assign('sThirdTitle', $this->translator->_('UserStories'))
+             ->assign('sSecondTitle', $this->translator->_('Themes'))
+             ->assign('sSecondUrl', $this->url->getUrl('project'))
+             ->assign('sThirdTitle', $this->translator->_('Epics'))
+             ->assign('sThirdUrl', $this->url->getUrl('theme', ['id' => $iIdTheme]))
+             ->assign('sFourTitle', $this->translator->_('UserStories'))
              ->assign('iPage', 3)
              ->display();
     }

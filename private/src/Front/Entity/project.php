@@ -53,6 +53,18 @@ class project extends Entity
     private $parent_id = null;
 	
 	/**
+	 * project Entity
+	 *
+	 * @access private
+	 * @var    project
+	 * @join
+	 *
+	 */
+    private $project = null;
+	
+	
+	
+	/**
 	 * date_create
 	 *
 	 * @access private
@@ -205,6 +217,50 @@ class project extends Entity
 		return $this;
 	}
 	
+	/**
+	 * get project entity join by parent_id of project
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return \Venus\src\Front\Entity\project
+	 */
+	public function get_project($aWhere = array())
+	{
+		if ($this->project === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('project');
+												   
+	        $aWhere['id'] = $this->get_parent_id();
+											
+													  
+            $aResult = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+
+          if (count($aResult) > 0) { $this->project = $aResult[0]; }
+          else { $this->project = array(); }
+        }
+
+		return $this->project;
+	}
+	
+	/**
+	 * set project entity join by parent_id of project
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\project  $project project entity
+	 * @join
+	 * @return \Venus\src\Front\Entity\project
+	 */
+	public function set_project(\Venus\src\Front\Entity\project $project)
+	{
+		$this->project = $project;
+		return $this;
+	}
+
 	/**
 	 * get date_create of project
 	 *

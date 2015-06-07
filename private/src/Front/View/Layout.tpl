@@ -298,18 +298,6 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-bar-chart-o"></i>
-                                <span>{gettext word='Boards'}</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                            {foreach from=$aBoard key=$iKey item=$oBoard}
-                                <li><a href="{url alias='board' id=$oBoard->get_id()}"><i class="fa fa-angle-double-right"></i> {$oBoard->get_name()}</a></li>
-                            {/foreach}
-                            </ul>
-                        </li>
                         <li>
                             <a href="{url alias='project'}">
                                 <i class="fa fa-th"></i> <span>{gettext word='Themes'}</span> <small class="badge pull-right bg-green">new</small>
@@ -322,11 +310,19 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                            {foreach from=$aSprints key=$iKey item=$oSprint}
-                                <li><a href="{url alias='sprint' id=$oSprint->get_id()}"><i class="fa fa-angle-double-right"></i> Sprint {$oSprint->get_number()}</a></li>
-                            {/foreach}
+                                {foreach from=$aSprints key=$iKey item=$oSprint}
+                                    <li><a href="{url alias='sprint' id=$oSprint->get_id()}"><i class="fa fa-angle-double-right"></i> Sprint {$oSprint->get_number()}</a></li>
+                                    {foreach from=$oSprint->boards key=$iKey2 item=$oBoard}
+                                        <li><a href="{url alias='board' id=$oBoard->get_id()}"><i class="fa fa-angle-double-right"></i> {$oBoard->get_name()}</a></li>
+                                    {/foreach}
+                                {/foreach}
                                 <li><a href="#"><i class="fa fa-angle-double-right"></i> Impeded Sprint</a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{url alias='setup'}">
+                                <i class="fa fa-gear"></i> <span>{gettext word='Configuration'}</span>
+                            </a>
                         </li>
                     </ul>
                 </section>
