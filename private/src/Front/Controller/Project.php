@@ -210,8 +210,7 @@ class Project extends Controller
         $oProject = new ModelProject;
         $oEpic = $oProject->findOneByid($id);
 
-        $oProject = new ModelProject;
-        $iIdTheme = $oEpic->get_project()->get_id();
+        $iIdTheme = $oEpic->get_parent()->get_id();
         
         $this->layout
 			 ->assign('model', '/src/Front/View/Epic.tpl')

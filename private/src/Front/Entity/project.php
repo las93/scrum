@@ -44,6 +44,18 @@ class project extends Entity
     private $id = null;
 	
 	/**
+	 * project Entity
+	 *
+	 * @access private
+	 * @var    project
+	 * @join
+	 *
+	 */
+    private $project = null;
+	
+	
+	
+	/**
 	 * parent_id
 	 *
 	 * @access private
@@ -53,14 +65,14 @@ class project extends Entity
     private $parent_id = null;
 	
 	/**
-	 * project Entity
+	 * parent Entity
 	 *
 	 * @access private
 	 * @var    project
 	 * @join
 	 *
 	 */
-    private $project = null;
+    private $parent = null;
 	
 	
 	
@@ -194,6 +206,47 @@ class project extends Entity
 	}
 	
 	/**
+	 * get project entity join by id of project
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_project($aWhere = array())
+	{
+		if ($this->project === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('project');
+												   
+	        $aWhere['parent_id'] = $this->get_id();
+											
+													  
+            $this->project = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->project;
+	}
+	
+	/**
+	 * set project entity join by id of project
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\project  $project project entity
+	 * @join
+	 * @return array
+	 */
+	public function set_project(array $project)
+	{
+		$this->project = $project;
+		return $this;
+	}
+
+	/**
 	 * get parent_id of project
 	 *
 	 * @access public
@@ -218,16 +271,16 @@ class project extends Entity
 	}
 	
 	/**
-	 * get project entity join by parent_id of project
+	 * get parent entity join by parent_id of project
 	 *
 	 * @access public
 	 * @param  array $aWhere
 	 * @join
 	 * @return \Venus\src\Front\Entity\project
 	 */
-	public function get_project($aWhere = array())
+	public function get_parent($aWhere = array())
 	{
-		if ($this->project === null) {
+		if ($this->parent === null) {
 
 			$oOrm = new Orm;
 
@@ -240,24 +293,24 @@ class project extends Entity
             $aResult = $oOrm->where($aWhere)
 						           ->load(false, '\Venus\src\Front\Entity\\');
 
-          if (count($aResult) > 0) { $this->project = $aResult[0]; }
-          else { $this->project = array(); }
+          if (count($aResult) > 0) { $this->parent = $aResult[0]; }
+          else { $this->parent = array(); }
         }
 
-		return $this->project;
+		return $this->parent;
 	}
 	
 	/**
-	 * set project entity join by parent_id of project
+	 * set parent entity join by parent_id of project
 	 *
 	 * @access public
-	 * @param  \Venus\src\Front\Entity\project  $project project entity
+	 * @param  \Venus\src\Front\Entity\project  $parent project entity
 	 * @join
 	 * @return \Venus\src\Front\Entity\project
 	 */
-	public function set_project(\Venus\src\Front\Entity\project $project)
+	public function set_parent(\Venus\src\Front\Entity\project $parent)
 	{
-		$this->project = $project;
+		$this->parent = $parent;
 		return $this;
 	}
 

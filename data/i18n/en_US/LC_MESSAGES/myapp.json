@@ -63,7 +63,12 @@
     "Type":"Type",
     "Options":"Options",
     "AddGroup":"Add group",
+    "UpdateGroup":"Update group",
     "EnterTheGroupName":"Enter the group name",
     "Human":"Human",
-    "Engine":"Engine"
+    "Engine":"Engine",
+    "AddedSuccessfully":"Added successfully",
+    "ModifiedSuccessfully":"Modified successfully",
+    "WouldYouReallyDeleteIt":"Would you really delete it?",
+    "ItsDeleted":"It's deleted"
 }

@@ -1,7 +1,7 @@
 <?php
 	
 /**
- * Model to access_team
+ * Model to team_access
  *
  * @category  	\Venus
  * @package   	\Venus\src\Front\Model
@@ -18,7 +18,7 @@ namespace Venus\src\Front\Model;
 use \Venus\core\Model as Model;
 	
 /**
- * Model to access_team
+ * Model to team_access
  *
  * @category  	\Venus
  * @package   	\Venus\src\Front\Model
@@ -30,6 +30,6 @@ use \Venus\core\Model as Model;
  * @link      	https://github.com/las93
  * @since     	1.0
  */
-class access_team extends Model 
+class team_access extends Model 
 {
 }

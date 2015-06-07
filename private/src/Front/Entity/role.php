@@ -44,6 +44,54 @@ class role extends Entity
     private $id = null;
 	
 	/**
+	 * user Entity
+	 *
+	 * @access private
+	 * @var    user
+	 * @join
+	 *
+	 */
+    private $user = null;
+	
+	
+	
+	/**
+	 * board Entity
+	 *
+	 * @access private
+	 * @var    board
+	 * @join
+	 *
+	 */
+    private $board = null;
+	
+	
+	
+	/**
+	 * statut Entity
+	 *
+	 * @access private
+	 * @var    statut
+	 * @join
+	 *
+	 */
+    private $statut = null;
+	
+	
+	
+	/**
+	 * statut_permission Entity
+	 *
+	 * @access private
+	 * @var    statut_permission
+	 * @join
+	 *
+	 */
+    private $statut_permission = null;
+	
+	
+	
+	/**
 	 * name
 	 *
 	 * @access private
@@ -85,6 +133,170 @@ class role extends Entity
 		return $this;
 	}
 	
+	/**
+	 * get user entity join by id of role
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_user($aWhere = array())
+	{
+		if ($this->user === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('user');
+												   
+	        $aWhere['id_role'] = $this->get_id();
+											
+													  
+            $this->user = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->user;
+	}
+	
+	/**
+	 * set user entity join by id of role
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\user  $user user entity
+	 * @join
+	 * @return array
+	 */
+	public function set_user(array $user)
+	{
+		$this->user = $user;
+		return $this;
+	}
+
+	/**
+	 * get board entity join by id of role
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_board($aWhere = array())
+	{
+		if ($this->board === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('board');
+												   
+	        $aWhere['id_role'] = $this->get_id();
+											
+													  
+            $this->board = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->board;
+	}
+	
+	/**
+	 * set board entity join by id of role
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\board  $board board entity
+	 * @join
+	 * @return array
+	 */
+	public function set_board(array $board)
+	{
+		$this->board = $board;
+		return $this;
+	}
+
+	/**
+	 * get statut entity join by id of role
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_statut($aWhere = array())
+	{
+		if ($this->statut === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('statut');
+												   
+	        $aWhere['id_role'] = $this->get_id();
+											
+													  
+            $this->statut = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->statut;
+	}
+	
+	/**
+	 * set statut entity join by id of role
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\statut  $statut statut entity
+	 * @join
+	 * @return array
+	 */
+	public function set_statut(array $statut)
+	{
+		$this->statut = $statut;
+		return $this;
+	}
+
+	/**
+	 * get statut_permission entity join by id of role
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_statut_permission($aWhere = array())
+	{
+		if ($this->statut_permission === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('statut_permission');
+												   
+	        $aWhere['id_role'] = $this->get_id();
+											
+													  
+            $this->statut_permission = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->statut_permission;
+	}
+	
+	/**
+	 * set statut_permission entity join by id of role
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\statut_permission  $statut_permission statut_permission entity
+	 * @join
+	 * @return array
+	 */
+	public function set_statut_permission(array $statut_permission)
+	{
+		$this->statut_permission = $statut_permission;
+		return $this;
+	}
+
 	/**
 	 * get name of role
 	 *

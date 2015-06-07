@@ -44,6 +44,54 @@ class statut extends Entity
     private $id = null;
 	
 	/**
+	 * project Entity
+	 *
+	 * @access private
+	 * @var    project
+	 * @join
+	 *
+	 */
+    private $project = null;
+	
+	
+	
+	/**
+	 * statut_link Entity
+	 *
+	 * @access private
+	 * @var    statut_link
+	 * @join
+	 *
+	 */
+    private $statut_link = null;
+	
+	
+	
+	/**
+	 * statut_permission Entity
+	 *
+	 * @access private
+	 * @var    statut_permission
+	 * @join
+	 *
+	 */
+    private $statut_permission = null;
+	
+	
+	
+	/**
+	 * board_part Entity
+	 *
+	 * @access private
+	 * @var    board_part
+	 * @join
+	 *
+	 */
+    private $board_part = null;
+	
+	
+	
+	/**
 	 * name
 	 *
 	 * @access private
@@ -106,6 +154,170 @@ class statut extends Entity
 		return $this;
 	}
 	
+	/**
+	 * get project entity join by id of statut
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_project($aWhere = array())
+	{
+		if ($this->project === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('project');
+												   
+	        $aWhere['id_status'] = $this->get_id();
+											
+													  
+            $this->project = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->project;
+	}
+	
+	/**
+	 * set project entity join by id of statut
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\project  $project project entity
+	 * @join
+	 * @return array
+	 */
+	public function set_project(array $project)
+	{
+		$this->project = $project;
+		return $this;
+	}
+
+	/**
+	 * get statut_link entity join by id of statut
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_statut_link($aWhere = array())
+	{
+		if ($this->statut_link === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('statut_link');
+												   
+	        $aWhere['id_statut_source'] = $this->get_id();
+											
+													  
+            $this->statut_link = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->statut_link;
+	}
+	
+	/**
+	 * set statut_link entity join by id of statut
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\statut_link  $statut_link statut_link entity
+	 * @join
+	 * @return array
+	 */
+	public function set_statut_link(array $statut_link)
+	{
+		$this->statut_link = $statut_link;
+		return $this;
+	}
+
+	/**
+	 * get statut_permission entity join by id of statut
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_statut_permission($aWhere = array())
+	{
+		if ($this->statut_permission === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('statut_permission');
+												   
+	        $aWhere['id_statut'] = $this->get_id();
+											
+													  
+            $this->statut_permission = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->statut_permission;
+	}
+	
+	/**
+	 * set statut_permission entity join by id of statut
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\statut_permission  $statut_permission statut_permission entity
+	 * @join
+	 * @return array
+	 */
+	public function set_statut_permission(array $statut_permission)
+	{
+		$this->statut_permission = $statut_permission;
+		return $this;
+	}
+
+	/**
+	 * get board_part entity join by id of statut
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_board_part($aWhere = array())
+	{
+		if ($this->board_part === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('board_part');
+												   
+	        $aWhere['id_statut'] = $this->get_id();
+											
+													  
+            $this->board_part = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->board_part;
+	}
+	
+	/**
+	 * set board_part entity join by id of statut
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\board_part  $board_part board_part entity
+	 * @join
+	 * @return array
+	 */
+	public function set_board_part(array $board_part)
+	{
+		$this->board_part = $board_part;
+		return $this;
+	}
+
 	/**
 	 * get name of statut
 	 *

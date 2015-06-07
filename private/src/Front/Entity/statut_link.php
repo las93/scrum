@@ -191,8 +191,8 @@ class statut_link extends Entity
             $aResult = $oOrm->where($aWhere)
 						           ->load(false, '\Venus\src\Front\Entity\\');
 
-          if (count($aResult) > 0) { $this->statut = $aResult[0]; }
-          else { $this->statut = array(); }
+          if (count($aResult) > 0) { $this->statut2 = $aResult[0]; }
+          else { $this->statut2 = array(); }
         }
 
 		return $this->statut2;

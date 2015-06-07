@@ -44,6 +44,30 @@ class user extends Entity
     private $id = null;
 	
 	/**
+	 * board Entity
+	 *
+	 * @access private
+	 * @var    board
+	 * @join
+	 *
+	 */
+    private $board = null;
+	
+	
+	
+	/**
+	 * project Entity
+	 *
+	 * @access private
+	 * @var    project
+	 * @join
+	 *
+	 */
+    private $project = null;
+	
+	
+	
+	/**
 	 * id_team
 	 *
 	 * @access private
@@ -61,6 +85,27 @@ class user extends Entity
 	 *
 	 */
     private $team = null;
+	
+	
+	
+	/**
+	 * id_role
+	 *
+	 * @access private
+	 * @var    int
+	 *
+	 */
+    private $id_role = null;
+	
+	/**
+	 * role Entity
+	 *
+	 * @access private
+	 * @var    role
+	 * @join
+	 *
+	 */
+    private $role = null;
 	
 	
 	
@@ -124,6 +169,88 @@ class user extends Entity
 		return $this;
 	}
 	
+	/**
+	 * get board entity join by id of user
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_board($aWhere = array())
+	{
+		if ($this->board === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('board');
+												   
+	        $aWhere['id_user'] = $this->get_id();
+											
+													  
+            $this->board = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->board;
+	}
+	
+	/**
+	 * set board entity join by id of user
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\board  $board board entity
+	 * @join
+	 * @return array
+	 */
+	public function set_board(array $board)
+	{
+		$this->board = $board;
+		return $this;
+	}
+
+	/**
+	 * get project entity join by id of user
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_project($aWhere = array())
+	{
+		if ($this->project === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('project');
+												   
+	        $aWhere['id_user_assign'] = $this->get_id();
+											
+													  
+            $this->project = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->project;
+	}
+	
+	/**
+	 * set project entity join by id of user
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\project  $project project entity
+	 * @join
+	 * @return array
+	 */
+	public function set_project(array $project)
+	{
+		$this->project = $project;
+		return $this;
+	}
+
 	/**
 	 * get id_team of user
 	 *
@@ -189,6 +316,74 @@ class user extends Entity
 	public function set_team(\Venus\src\Front\Entity\team $team)
 	{
 		$this->team = $team;
+		return $this;
+	}
+
+	/**
+	 * get id_role of user
+	 *
+	 * @access public
+	 * @return int
+	 */
+	public function get_id_role()
+	{
+		return $this->id_role;
+	}
+
+	/**
+	 * set id_role of user
+	 *
+	 * @access public
+	 * @param  int $id_role id_role of user
+	 * @return \Venus\src\Front\Entity\user
+	 */
+	public function set_id_role($id_role) 
+	{
+		$this->id_role = $id_role;
+		return $this;
+	}
+	
+	/**
+	 * get role entity join by id_role of user
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return \Venus\src\Front\Entity\user
+	 */
+	public function get_role($aWhere = array())
+	{
+		if ($this->role === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('role');
+												   
+	        $aWhere['id'] = $this->get_id_role();
+											
+													  
+            $aResult = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+
+          if (count($aResult) > 0) { $this->role = $aResult[0]; }
+          else { $this->role = array(); }
+        }
+
+		return $this->role;
+	}
+	
+	/**
+	 * set role entity join by id_role of user
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\role  $role role entity
+	 * @join
+	 * @return \Venus\src\Front\Entity\user
+	 */
+	public function set_role(\Venus\src\Front\Entity\role $role)
+	{
+		$this->role = $role;
 		return $this;
 	}
 

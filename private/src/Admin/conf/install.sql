@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 05 Juin 2015 à 16:06
+-- Généré le :  Lun 08 Juin 2015 à 00:27
 -- Version du serveur :  5.6.20
 -- Version de PHP :  5.5.15
 
@@ -23,6 +23,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `access`
+--
+
+CREATE TABLE IF NOT EXISTS `access` (
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `board`
 --
 
@@ -30,16 +42,17 @@ CREATE TABLE IF NOT EXISTS `board` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `id_role` int(10) unsigned NOT NULL,
-  `id_user` int(10) unsigned NOT NULL
+  `id_user` int(10) unsigned NOT NULL,
+  `id_team` int(10) unsigned NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `board`
 --
 
-INSERT INTO `board` (`id`, `name`, `id_role`, `id_user`) VALUES
-(2, 'Board Product Owner', 2, 2),
-(3, 'Board Scrum Master', 1, 1);
+INSERT INTO `board` (`id`, `name`, `id_role`, `id_user`, `id_team`) VALUES
+(2, 'Board Product Owner', 2, 2, 1),
+(3, 'Board Scrum Master', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(30) NOT NULL,
   `type` enum('human','engine') NOT NULL DEFAULT 'human'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `role`
@@ -155,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `sprint` (
 --
 
 INSERT INTO `sprint` (`id`, `number`, `id_team`, `start`, `end`) VALUES
-(1, 1, 1, '2015-06-10', '2015-06-23');
+(1, 1, 1, '2015-05-10', '2020-06-23');
 
 -- --------------------------------------------------------
 
@@ -274,12 +287,24 @@ INSERT INTO `team` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `team_access`
+--
+
+CREATE TABLE IF NOT EXISTS `team_access` (
+  `id_team` int(10) unsigned NOT NULL,
+  `id_access` int(10) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
 `id` int(10) unsigned NOT NULL,
   `id_team` int(10) unsigned NOT NULL,
+  `id_role` int(10) unsigned NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `login` varchar(100) NOT NULL,
@@ -290,19 +315,25 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `id_team`, `lastname`, `firstname`, `login`, `password`) VALUES
-(1, 1, 'Paquet', 'Judicaël', 'las', 'd2a2d089807d14b1791b1db62b5500b9'),
-(2, 1, 'Maxime', 'Bean', '', '');
+INSERT INTO `user` (`id`, `id_team`, `id_role`, `lastname`, `firstname`, `login`, `password`) VALUES
+(1, 1, 1, 'Paquet', 'Judicaël', 'las', 'd2a2d089807d14b1791b1db62b5500b9'),
+(2, 1, 2, 'Maxime', 'Bean', 'max', '');
 
 --
 -- Index pour les tables exportées
 --
 
 --
+-- Index pour la table `access`
+--
+ALTER TABLE `access`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `board`
 --
 ALTER TABLE `board`
- ADD PRIMARY KEY (`id`), ADD KEY `id_role` (`id_role`), ADD KEY `id_user` (`id_user`);
+ ADD PRIMARY KEY (`id`), ADD KEY `id_role` (`id_role`), ADD KEY `id_user` (`id_user`), ADD KEY `id_team` (`id_team`);
 
 --
 -- Index pour la table `board_part`
@@ -353,15 +384,26 @@ ALTER TABLE `team`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `team_access`
+--
+ALTER TABLE `team_access`
+ ADD PRIMARY KEY (`id_team`,`id_access`), ADD KEY `id_access` (`id_access`);
+
+--
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`id`), ADD KEY `id_team` (`id_team`);
+ ADD PRIMARY KEY (`id`), ADD KEY `id_team` (`id_team`), ADD KEY `id_role` (`id_role`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
 --
 
+--
+-- AUTO_INCREMENT pour la table `access`
+--
+ALTER TABLE `access`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `board`
 --
@@ -381,7 +423,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `sprint`
 --
@@ -457,6 +499,13 @@ ADD CONSTRAINT `statut_link_ibfk_2` FOREIGN KEY (`id_statut_recipient`) REFERENC
 ALTER TABLE `statut_permission`
 ADD CONSTRAINT `id_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `id_statut` FOREIGN KEY (`id_statut`) REFERENCES `statut` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `team_access`
+--
+ALTER TABLE `team_access`
+ADD CONSTRAINT `team_access_ibfk_1` FOREIGN KEY (`id_team`) REFERENCES `team` (`id`),
+ADD CONSTRAINT `team_access_ibfk_2` FOREIGN KEY (`id_access`) REFERENCES `access` (`id`);
 
 --
 -- Contraintes pour la table `user`

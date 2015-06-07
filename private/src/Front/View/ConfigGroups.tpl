@@ -3,6 +3,13 @@
                 <section class="content">
                     <!-- START ALERTS AND CALLOUTS -->
                     <div class="row">
+                        {if $app.get.msg}
+                            <div class="alert alert-success alert-dismissable">
+                                <i class="fa fa-check"></i>
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <b>{$app.get.msg}!</b>
+                            </div>
+                        {/if}
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
@@ -30,8 +37,12 @@
                                             <td>{$oRole->get_id()}</td>
                                             <td>{$oRole->get_name()}</td>
                                             <td>{$oRole->get_type()}</td>
-                                            <td>{*$oUserStory->get_name()*}</td>
-                                            <td></td>
+                                            <td>{foreach from=$oRole->get_user() key=$iKey2 item=$oUser}{$oUser->get_login()} {/foreach}</td>
+                                            <td>
+                                                <a href="{url alias='setup_group_update' id=$oRole->get_id()}"><i class="fa fa-edit"></i></a>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <a href="javascript:void(0);" onClick="if (confirm('{gettext word='WouldYouReallyDeleteIt'}')) { window.location.href='{url alias='setup_groups'}?delete={$oRole->get_id()}'; }"><i class="fa fa-ban"></i></a>
+                                            </td>
                                         </tr>
                                         {/foreach}
                                     </table>

@@ -73,11 +73,20 @@ class Config extends Controller
     /**
      * the main page
      *
-     * @access publi
+     * @access public
      * @return void
      */
     public function showGroups()
     {   
+        if ($_GET['delete']) {
+
+            $oEntityRole = new EntityRole;
+            $oEntityRole->set_id($_GET['delete'])
+                        ->remove();
+            
+            $_GET['msg'] = $this->translator->_('ItsDeleted');
+        }
+        
         $oRole = new Role;
         $aRoles = $oRole->findAll();
         
@@ -94,7 +103,7 @@ class Config extends Controller
     /**
      * the main page
      *
-     * @access publi
+     * @access public
      * @return void
      */
     public function addGroup()
@@ -105,6 +114,8 @@ class Config extends Controller
             $oEntityRole->set_name($_POST['name'])
                         ->set_type($_POST['type'])
                         ->save();
+            
+            $this->redirect($this->url->getUrl('setup_groups').'?msg='.urlencode($this->translator->_('AddedSuccessfully')));
         }
         
         $this->layout
@@ -115,6 +126,40 @@ class Config extends Controller
              ->assign('sThirdTitle', $this->translator->_('ManageGroups'))
              ->assign('sThirdUrl', $this->url->getUrl('setup_groups'))
              ->assign('sFourTitle', $this->translator->_('AddGroup'))
+             ->display();
+    }
+
+    /**
+     * the main page
+     *
+     * @access public
+     * @param  int id
+     * @return void
+     */
+    public function updateGroup($id)
+    {   
+        $oRole = new Role;
+        $oOneRole = $oRole->findOneByid($id);
+        
+        if (isset($_POST) && count($_POST) > 0 && isset($_POST['name']) && isset($_POST['type'])) {
+
+            
+            $oOneRole->set_name($_POST['name'])
+                     ->set_type($_POST['type'])
+                     ->save();
+            
+            $this->redirect($this->url->getUrl('setup_groups').'?msg='.urlencode($this->translator->_('ModifiedSuccessfully')));
+        }
+        
+        $this->layout
+			 ->assign('model', '/src/Front/View/ConfigGroupAdd.tpl')
+             ->assign('sTitle', $this->translator->_('UpdateGroup'))
+             ->assign('sSecondTitle', $this->translator->_('Configuration'))
+             ->assign('sSecondUrl', $this->url->getUrl('setup'))
+             ->assign('sThirdTitle', $this->translator->_('ManageGroups'))
+             ->assign('sThirdUrl', $this->url->getUrl('setup_groups'))
+             ->assign('sFourTitle', $this->translator->_('UpdateGroup'))
+             ->assign('oRole', $oOneRole)
              ->display();
     }
 }

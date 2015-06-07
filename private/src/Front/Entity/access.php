@@ -44,6 +44,18 @@ class access extends Entity
     private $id = null;
 	
 	/**
+	 * team_access Entity
+	 *
+	 * @access private
+	 * @var    team_access
+	 * @join
+	 *
+	 */
+    private $team_access = null;
+	
+	
+	
+	/**
 	 * name
 	 *
 	 * @access private
@@ -85,6 +97,47 @@ class access extends Entity
 		return $this;
 	}
 	
+	/**
+	 * get team_access entity join by id of access
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_team_access($aWhere = array())
+	{
+		if ($this->team_access === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('team_access');
+												   
+	        $aWhere['id_access'] = $this->get_id();
+											
+													  
+            $this->team_access = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->team_access;
+	}
+	
+	/**
+	 * set team_access entity join by id of access
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\team_access  $team_access team_access entity
+	 * @join
+	 * @return array
+	 */
+	public function set_team_access(array $team_access)
+	{
+		$this->team_access = $team_access;
+		return $this;
+	}
+
 	/**
 	 * get name of access
 	 *

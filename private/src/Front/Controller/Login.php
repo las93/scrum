@@ -76,7 +76,7 @@ class Login extends Controller
         
         if (!$oGetUser) {
             
-            $this->redirect($this->url->getUrl('home'));
+            $this->redirect($_GET['back']);
         }
         
         $this->session->set('lockscreen', 1);

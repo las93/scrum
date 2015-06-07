@@ -44,6 +44,18 @@ class board extends Entity
     private $id = null;
 	
 	/**
+	 * board_part Entity
+	 *
+	 * @access private
+	 * @var    board_part
+	 * @join
+	 *
+	 */
+    private $board_part = null;
+	
+	
+	
+	/**
 	 * name
 	 *
 	 * @access private
@@ -139,6 +151,47 @@ class board extends Entity
 		return $this;
 	}
 	
+	/**
+	 * get board_part entity join by id of board
+	 *
+	 * @access public
+	 * @param  array $aWhere
+	 * @join
+	 * @return array
+	 */
+	public function get_board_part($aWhere = array())
+	{
+		if ($this->board_part === null) {
+
+			$oOrm = new Orm;
+
+			$oOrm->select(array('*'))
+				 ->from('board_part');
+												   
+	        $aWhere['id_board'] = $this->get_id();
+											
+													  
+            $this->board_part = $oOrm->where($aWhere)
+						           ->load(false, '\Venus\src\Front\Entity\\');
+        }
+
+		return $this->board_part;
+	}
+	
+	/**
+	 * set board_part entity join by id of board
+	 *
+	 * @access public
+	 * @param  \Venus\src\Front\Entity\board_part  $board_part board_part entity
+	 * @join
+	 * @return array
+	 */
+	public function set_board_part(array $board_part)
+	{
+		$this->board_part = $board_part;
+		return $this;
+	}
+
 	/**
 	 * get name of board
 	 *
