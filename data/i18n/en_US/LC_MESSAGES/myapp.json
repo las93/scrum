@@ -57,6 +57,7 @@
     "Task":"Task",
     "Configuration":"Configuration",
     "ManageGroups":"Manage groups",
+    "ManageUsers":"Manage users",
     "Group":"Group",
     "Groups":"Groups",
     "Users":"Users",
@@ -70,5 +71,12 @@
     "AddedSuccessfully":"Added successfully",
     "ModifiedSuccessfully":"Modified successfully",
     "WouldYouReallyDeleteIt":"Would you really delete it?",
-    "ItsDeleted":"It's deleted"
+    "ItsDeleted":"It's deleted",
+    "Role":"Role",
+    "Firstname":"Firstname",
+    "Lastname":"Lastname",
+    "English":"English",
+    "French":"French",
+    "Vietnameese":"Vietnameese",
+    "ChooseYourLanguage":"Choose Your Language"
 }

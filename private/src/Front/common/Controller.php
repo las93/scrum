@@ -89,6 +89,27 @@ abstract class Controller extends CoreController
 		    $this->layout
 		         ->assign('aUser', null);
 		}
+		
+		if (isset($_GET['language'])) {
+		    
+		    $this->session
+		         ->set('language', $_GET['language']);
+		}
+	
+		if ($this->session->get('language')) {
+		    
+		    $this->translator
+		         ->setLanguage($this->session->get('language'));
+		}
+		
+		$aLanguage = [
+            ['flag' => '/img/flag/us.png', 'i18n' => 'en_US', 'title' => $this->translator->_('English')],
+            ['flag' => '/img/flag/fr.png', 'i18n' => 'fr_FR', 'title' => $this->translator->_('French')],
+            ['flag' => '/img/flag/vn.png', 'i18n' => 'vn_VN', 'title' => $this->translator->_('Vietnameese')]	
+		];
+		
+		$this->layout
+		     ->assign('aLanguage', $aLanguage);
 	}
 	
 	/**

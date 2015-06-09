@@ -162,4 +162,34 @@ class Config extends Controller
              ->assign('oRole', $oOneRole)
              ->display();
     }
+
+    /**
+     * the main page
+     *
+     * @access public
+     * @return void
+     */
+    public function showUsers()
+    {   
+        if ($_GET['delete']) {
+
+            $oEntityRole = new EntityRole;
+            $oEntityRole->set_id($_GET['delete'])
+                        ->remove();
+            
+            $_GET['msg'] = $this->translator->_('ItsDeleted');
+        }
+        
+        $oRole = new Role;
+        $aRoles = $oRole->findAll();
+        
+        $this->layout
+			 ->assign('model', '/src/Front/View/ConfigUsers.tpl')
+			 ->assign('aRoles', $aRoles)
+             ->assign('sTitle', $this->translator->_('ManageUsers'))
+             ->assign('sSecondTitle', $this->translator->_('Configuration'))
+             ->assign('sSecondUrl', $this->url->getUrl('setup'))
+             ->assign('sThirdTitle', $this->translator->_('ManageUsers'))
+             ->display();
+    }
 }
