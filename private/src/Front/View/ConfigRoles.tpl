@@ -13,7 +13,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">{gettext word='Groups'} <a href="{url alias='setup_group_add'}"><i class="fa fa-plus"></i></a></h3>
+                                    <h3 class="box-title">{gettext word='Roles'} <a href="{url alias='setup_role_add'}"><i class="fa fa-plus"></i></a></h3>
                                     <div class="box-tools">
                                         <div class="input-group">
                                             <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="{gettext word='Search'}"/>
@@ -28,24 +28,20 @@
                                         <tr>
                                             <th>{gettext word='Id'}</th>
                                             <th>{gettext word='Group'}</th>
-                                            <th>{gettext word='Role'}</th>
-                                            <th>{gettext word='Login'}</th>
-                                            <th>{gettext word='Lastname'}</th>
-                                            <th>{gettext word='Firstname'}</th>
+                                            <th>{gettext word='Type'}</th>
+                                            <th>{gettext word='Users'}</th>
                                             <th>{gettext word='Options'}</th>
                                         </tr>
-                                        {foreach from=$aUsers key=$iKey item=$oUser}
+                                        {foreach from=$aRoles key=$iKey item=$oRole}
                                         <tr>
-                                            <td>{$oUser->get_id()}</td>
-                                            <td>{$oUser->get_team()->get_name()}</td>
-                                            <td>{$oUser->get_role()->get_name()}</td>
-                                            <td>{$oUser->get_login()}</td>
-                                            <td>{$oUser->get_lastname()}</td>
-                                            <td>{$oUser->get_firstname()}</td>
+                                            <td>{$oRole->get_id()}</td>
+                                            <td>{$oRole->get_name()}</td>
+                                            <td>{$oRole->get_type()}</td>
+                                            <td>{foreach from=$oRole->get_user() key=$iKey2 item=$oUser}<a href="{url alias='setup_user_add' id=$oUser->get_id()}">{$oUser->get_login()}</a> {/foreach}</td>
                                             <td>
-                                                <a href="{url alias='setup_user_update' id=$oUser->get_id()}"><i class="fa fa-edit"></i></a>
+                                                <a href="{url alias='setup_role_update' id=$oRole->get_id()}"><i class="fa fa-edit"></i></a>
                                                 &nbsp;&nbsp;&nbsp;
-                                                <a href="javascript:void(0);" onClick="if (confirm('{gettext word='WouldYouReallyDeleteIt'}')) { window.location.href='{url alias='setup_users'}?delete={$oUser->get_id()}'; }"><i class="fa fa-ban"></i></a>
+                                                <a href="javascript:void(0);" onClick="if (confirm('{gettext word='WouldYouReallyDeleteIt'}')) { window.location.href='{url alias='setup_roles'}?delete={$oRole->get_id()}'; }"><i class="fa fa-ban"></i></a>
                                             </td>
                                         </tr>
                                         {/foreach}

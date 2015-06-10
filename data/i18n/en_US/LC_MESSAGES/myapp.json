@@ -58,6 +58,8 @@
     "Configuration":"Configuration",
     "ManageGroups":"Manage groups",
     "ManageUsers":"Manage users",
+    "ManageRoles":"Manage roles",
+    "Roles":"Roles",
     "Group":"Group",
     "Groups":"Groups",
     "Users":"Users",
@@ -65,7 +67,11 @@
     "Options":"Options",
     "AddGroup":"Add group",
     "UpdateGroup":"Update group",
+    "UpdateRole":"Update role",
+    "AddRole":"Add role",
+    "AddUser":"Add user",
     "EnterTheGroupName":"Enter the group name",
+    "EnterTheRoleName":"Enter the role name",
     "Human":"Human",
     "Engine":"Engine",
     "AddedSuccessfully":"Added successfully",
@@ -78,5 +84,9 @@
     "English":"English",
     "French":"French",
     "Vietnameese":"Vietnameese",
-    "ChooseYourLanguage":"Choose Your Language"
+    "ChooseYourLanguage":"Choose Your Language",
+    "Team":"Team",
+    "EnterTheFirstname":"Enter the firstname",
+    "EnterTheLastname":"Enter the lastname",
+    "EverAzerty":"Ever azerty"
 }
