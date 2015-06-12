@@ -17,6 +17,7 @@ namespace Venus\src\Front\Controller;
 
 use \Venus\src\Front\common\Controller  as Controller;
 use \Venus\src\Front\Entity\role        as EntityRole;
+use \Venus\src\Front\Entity\team        as EntityTeam;
 use \Venus\src\Front\Entity\user        as EntityUser;
 use \Venus\src\Front\Model\role         as Role;
 use \Venus\src\Front\Model\team         as Team;
@@ -83,19 +84,19 @@ class Config extends Controller
     {   
         if ($_GET['delete']) {
 
-            $oEntityRole = new EntityRole;
-            $oEntityRole->set_id($_GET['delete'])
+            $oEntityTeam = new EntityTeam;
+            $oEntityTeam->set_id($_GET['delete'])
                         ->remove();
             
             $_GET['msg'] = $this->translator->_('ItsDeleted');
         }
         
-        $oRole = new Role;
-        $aRoles = $oRole->findAll();
+        $oTeam = new Team;
+        $aTeams = $oTeam->findAll();
         
         $this->layout
 			 ->assign('model', '/src/Front/View/ConfigGroups.tpl')
-			 ->assign('aRoles', $aRoles)
+			 ->assign('aTeams', $aTeams)
              ->assign('sTitle', $this->translator->_('ManageGroups'))
              ->assign('sSecondTitle', $this->translator->_('Configuration'))
              ->assign('sSecondUrl', $this->url->getUrl('setup'))
@@ -111,11 +112,10 @@ class Config extends Controller
      */
     public function addGroup()
     {   
-        if (isset($_POST) && count($_POST) > 0 && isset($_POST['name']) && isset($_POST['type'])) {
+        if (isset($_POST) && count($_POST) > 0 && isset($_POST['name'])) {
 
-            $oEntityRole = new EntityRole;
-            $oEntityRole->set_name($_POST['name'])
-                        ->set_type($_POST['type'])
+            $oEntityTeam = new EntityTeam;
+            $oEntityTeam->set_name($_POST['name'])
                         ->save();
             
             $this->redirect($this->url->getUrl('setup_groups').'?msg='.urlencode($this->translator->_('AddedSuccessfully')));
@@ -141,14 +141,13 @@ class Config extends Controller
      */
     public function updateGroup($id)
     {   
-        $oRole = new Role;
-        $oOneRole = $oRole->findOneByid($id);
+        $oTeam = new Team;
+        $oOneTeam = $oTeam->findOneByid($id);
         
-        if (isset($_POST) && count($_POST) > 0 && isset($_POST['name']) && isset($_POST['type'])) {
+        if (isset($_POST) && count($_POST) > 0 && isset($_POST['name'])) {
 
             
-            $oOneRole->set_name($_POST['name'])
-                     ->set_type($_POST['type'])
+            $oOneTeam->set_name($_POST['name'])
                      ->save();
             
             $this->redirect($this->url->getUrl('setup_groups').'?msg='.urlencode($this->translator->_('ModifiedSuccessfully')));
@@ -162,7 +161,7 @@ class Config extends Controller
              ->assign('sThirdTitle', $this->translator->_('ManageGroups'))
              ->assign('sThirdUrl', $this->url->getUrl('setup_groups'))
              ->assign('sFourTitle', $this->translator->_('UpdateGroup'))
-             ->assign('oRole', $oOneRole)
+             ->assign('oTeam', $oOneTeam)
              ->display();
     }
 

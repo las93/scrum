@@ -4,7 +4,7 @@
                     <!-- START ALERTS AND CALLOUTS -->
                     <div class="row">
                         <div class="col-xs-12">
-                            <a href="{url alias='setup_roles'}"><i class="fa fa-group"></i> <span>{gettext word='ManageRoles'}</span></a>       
+                            <a href="{url alias='setup_roles'}"><i class="fa fa-leaf"></i> <span>{gettext word='ManageRoles'}</span></a>       
                         </div>      
                         <div class="col-xs-12">
                             <a href="{url alias='setup_groups'}"><i class="fa fa-group"></i> <span>{gettext word='ManageGroups'}</span></a>       

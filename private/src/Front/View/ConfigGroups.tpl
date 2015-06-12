@@ -28,20 +28,18 @@
                                         <tr>
                                             <th>{gettext word='Id'}</th>
                                             <th>{gettext word='Group'}</th>
-                                            <th>{gettext word='Type'}</th>
                                             <th>{gettext word='Users'}</th>
                                             <th>{gettext word='Options'}</th>
                                         </tr>
-                                        {foreach from=$aRoles key=$iKey item=$oRole}
+                                        {foreach from=$aTeams key=$iKey item=$oTeam}
                                         <tr>
-                                            <td>{$oRole->get_id()}</td>
-                                            <td>{$oRole->get_name()}</td>
-                                            <td>{$oRole->get_type()}</td>
-                                            <td>{foreach from=$oRole->get_user() key=$iKey2 item=$oUser}{$oUser->get_login()} {/foreach}</td>
+                                            <td>{$oTeam->get_id()}</td>
+                                            <td>{$oTeam->get_name()}</td>
+                                            <td>{foreach from=$oTeam->get_user() key=$iKey2 item=$oUser}{$oUser->get_login()} {/foreach}</td>
                                             <td>
-                                                <a href="{url alias='setup_group_update' id=$oRole->get_id()}"><i class="fa fa-edit"></i></a>
+                                                <a href="{url alias='setup_group_update' id=$oTeam->get_id()}"><i class="fa fa-edit"></i></a>
                                                 &nbsp;&nbsp;&nbsp;
-                                                <a href="javascript:void(0);" onClick="if (confirm('{gettext word='WouldYouReallyDeleteIt'}')) { window.location.href='{url alias='setup_groups'}?delete={$oRole->get_id()}'; }"><i class="fa fa-ban"></i></a>
+                                                <a href="javascript:void(0);" onClick="if (confirm('{gettext word='WouldYouReallyDeleteIt'}')) { window.location.href='{url alias='setup_groups'}?delete={$oTeam->get_id()}'; }"><i class="fa fa-ban"></i></a>
                                             </td>
                                         </tr>
                                         {/foreach}
