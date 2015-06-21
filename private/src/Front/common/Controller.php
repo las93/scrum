@@ -20,7 +20,6 @@ use \Attila\Orm                     as Orm;
 use \Attila\Orm\Where               as Where;
 use \Venus\core\Controller          as CoreController;
 use \Venus\src\Front\Model\board    as Board;
-use \Venus\src\Front\Model\sprint   as Sprint;
 use \Venus\src\Front\Model\user     as User;
 
 /**
@@ -58,6 +57,12 @@ abstract class Controller extends CoreController
 
             $oUser = new User;
             $oOneUser = $oUser->findOneByid($this->session->get('id_user'));
+            
+            if (count($oOneUser) < 1 && get_called_class() !== 'Venus\src\Front\Controller\Login') {
+                
+                $this->session->set('id_user', false);
+                $this->redirect($this->url->getUrl('login'));
+            }
 
             $oTeam = $oOneUser->get_team();
             
